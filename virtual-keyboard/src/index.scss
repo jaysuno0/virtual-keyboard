@@ -1,7 +1,14 @@
+// components
 @use 'components/container/container';
 @use 'components/header/header';
 @use 'components/main/main';
 @use 'components/textarea/textarea';
+@use 'components/keyboard/keyboard';
+
+//helpars
+@use './assets/sass/fonts';
+@use './assets/sass/colors';
+@use './assets/sass/box-model' as box;
 
 @font-face {
   font-family: 'Open Sans';
@@ -16,8 +23,12 @@
 }
 
 html {
-  font-size: 20px;
-  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: fonts.$font-size-standard;
+  font-family: fonts.$font-family;
+}
+
+body {
+  background: colors.$main-standard;
 }
 
 a {
@@ -25,3 +36,12 @@ a {
   color: inherit;
 }
 
+.btn {
+  padding: box.$padding-small box.$padding-standard;
+
+  font-weight: bold;
+  font-family: fonts.$font-family;
+
+  border-radius: box.$border-radius-standard;
+  border: none;
+}

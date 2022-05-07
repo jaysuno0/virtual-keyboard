@@ -1,9 +1,14 @@
+@use '../../assets/sass/box-model' as box;
+
 .main__textarea {
   width: 100%;
-  max-width: 768px;
-
+  max-width: 850px;
   max-height: 50vh;
   height: 300px;
 
+  margin-bottom: box.$margin-standard;
+  border-radius: box.$border-radius-standard;
+  box-shadow: box.$box-shadow-inset;
+  
   resize: vertical;
 }

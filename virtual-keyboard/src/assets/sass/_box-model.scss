@@ -1,4 +1,7 @@
+@use '../../assets/sass/colors';
+
 /* margin */
+$margin-small-extra: 0.35rem;
 $margin-small: 0.7rem;
 $margin-standard: 1rem;
 $margin-large: 1.5rem;
@@ -7,3 +10,11 @@ $margin-large: 1.5rem;
 $padding-small: 0.7rem;
 $padding-standard: 1rem;
 $padding-large: 1.5rem;
+
+/* border */
+$border-standard: 2px solid colors.$gray-dark-extra;
+$border-radius-standard: 6px;
+
+/* box-shadow */
+$box-shadow: 3px 3px 4px colors.$gray-dark-extra;
+$box-shadow-inset: inset 2px 2px 8px #000;

@@ -1,0 +1,55 @@
+@use '../../assets/sass/box-model' as box;
+@use '../../assets/sass/helpers';
+@use '../../assets/sass/fonts';
+@use '../../assets/sass/colors';
+
+.keyboard {
+  width: 100%;
+  max-width: 850px;
+  
+  display: grid;
+  grid-gap: box.$margin-small-extra;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(30, 1fr);
+}
+
+.keyboard__btn.btn{
+  position: relative;
+  grid-column: span 2;
+  @include helpers.flexCenter(column);
+
+  padding: box.$padding-small 0px;
+
+  font-size: 17px;
+  box-shadow: box.$box-shadow;
+  background: colors.$accent-standard;
+}
+
+.keyboard__btn .alt-value {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+
+  font-size: fonts.$font-size-small;
+}
+
+.keyboard__btn.keyboard__btn_span-1 {
+  grid-column: span 1;
+}
+
+.keyboard__btn.keyboard__btn_span-3 {
+  grid-column: span 3;
+}
+
+.keyboard__btn.keyboard__btn_span-4 {
+  grid-column: span 4;
+}
+
+.keyboard__btn.keyboard__btn_span-5 {
+  grid-column: span 5;
+}
+
+.keyboard__btn.keyboard__btn_span-10 {
+  grid-column: span 10;
+}
+
