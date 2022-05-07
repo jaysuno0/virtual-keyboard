@@ -1,0 +1,5 @@
+@use '../../assets/sass/helpers';
+
+.header {
+  @include helpers.flexCenter(column);
+}

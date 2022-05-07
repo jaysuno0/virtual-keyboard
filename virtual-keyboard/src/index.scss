@@ -1,0 +1,25 @@
+@use 'components/container/container';
+@use 'components/header/header';
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('./assets/fonts/OpenSans.ttf');
+}
+
+// GENERAL
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 20px;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
