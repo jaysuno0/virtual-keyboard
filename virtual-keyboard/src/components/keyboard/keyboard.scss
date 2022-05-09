@@ -29,6 +29,10 @@
   background: colors.$main-standard;
 }
 
+.keyboard__btn:hover {
+  background: colors.$accent;
+}
+
 .keyboard__btn.pressed{
   box-shadow: none;
   transform: translate(2px, 2px);

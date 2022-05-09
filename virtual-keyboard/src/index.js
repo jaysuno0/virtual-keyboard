@@ -8,9 +8,9 @@ import main from './components/main/main';
 import textarea from './components/textarea/textarea';
 import keyboard from './components/keyboard/keyboard';
 
-main.append(textarea);
-main.append(keyboard);
 container.append(header);
 container.append(main);
+main.append(textarea);
+main.append(keyboard);
 
 document.querySelector('body').append(container);

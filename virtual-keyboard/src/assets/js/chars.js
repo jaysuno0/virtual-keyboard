@@ -12,7 +12,9 @@ const chars = {
     { char: '0', alt: ')', code: 'Digit0' },
     { char: '-', alt: '_', code: 'Minus' },
     { char: '=', alt: '+', code: 'Equal' },
-    { char: 'backspace', alt: '~', width: 'keyboard__btn_span-5', code: 'Backspace'},
+    {
+      char: 'backspace', alt: '~', width: 'keyboard__btn_span-5', code: 'Backspace',
+    },
     { char: 'tab', width: 'keyboard__btn_span-3', code: 'Tab' },
     { char: 'q', code: 'KeyQ' },
     { char: 'w', code: 'KeyW' },
@@ -63,7 +65,7 @@ const chars = {
     { char: '◀', code: 'ArrowLeft' },
     { char: '▼', code: 'ArrowDown' },
     { char: '▶', code: 'ArrowRight' },
-    { char: '⇄', code: 'lang' },
+    { char: '⇄', code: 'Lang' },
   ],
   ru: [
     { char: 'ё', alt: '~', code: 'Backquote' },
@@ -79,7 +81,9 @@ const chars = {
     { char: '0', alt: ')', code: 'Digit0' },
     { char: '-', alt: '_', code: 'Minus' },
     { char: '=', alt: '+', code: 'Equal' },
-    { char: 'backspace', alt: '~', width: 'keyboard__btn_span-5', code: 'Backspace' },
+    {
+      char: 'backspace', alt: '~', width: 'keyboard__btn_span-5', code: 'Backspace',
+    },
     { char: 'tab', width: 'keyboard__btn_span-3', code: 'Tab' },
     { char: 'й', code: 'KeyQ' },
     { char: 'ц', code: 'KeyW' },
@@ -125,12 +129,12 @@ const chars = {
     { char: 'win', width: 'keyboard__btn_span-3', code: 'MetaLeft' },
     { char: 'alt', code: 'AltLeft' },
     { char: '_____', width: 'keyboard__btn_span-10', code: 'Space' },
-    { char: 'alt', code: 'AltRight'},
+    { char: 'alt', code: 'AltRight' },
     { char: 'ctrl', width: 'keyboard__btn_span-3', code: 'ControlRight' },
     { char: '◀', code: 'ArrowLeft' },
     { char: '▼', code: 'ArrowDown' },
     { char: '▶', code: 'ArrowRight' },
-    { char: '⇄', code: 'lang' },
+    { char: '⇄', code: 'Lang' },
   ],
 };
 

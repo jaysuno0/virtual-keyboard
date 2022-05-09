@@ -5,7 +5,7 @@ const h1 = createElement('h1', ['header__title']);
 const headerDescription = createElement('p', ['header__description']);
 const headerLink = createElement('a', ['link', 'header__link']);
 
-h1.textContent = 'Виртуальная клавиатура';
+h1.textContent = 'virtual keyboard';
 
 headerDescription.textContent = 'project for ';
 headerDescription.append(headerLink);

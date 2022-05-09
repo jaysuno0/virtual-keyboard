@@ -47,4 +47,5 @@ a:hover {
   border-radius: box.$border-radius-standard;
   border: none;
   transition: $transition;
+  cursor: pointer;
 }
