@@ -1,0 +1,50 @@
+@use 'fonts';
+@use 'colors';
+@use 'box-model' as box;
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('./assets/fonts/OpenSans.ttf');
+}
+
+$transition: 200ms;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: fonts.$font-size-standard;
+  font-family: fonts.$font-family;
+}
+
+body {
+  background: colors.$main-dark;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: colors.$main-light;
+  transition: color $transition;
+}
+
+a:hover {
+  color: colors.$accent;
+}
+
+.btn {
+  padding: box.$padding-small box.$padding-large;
+
+  font-weight: bold;
+  font-family: fonts.$font-family;
+
+  border-radius: box.$border-radius-standard;
+  border: none;
+  transition: $transition;
+}

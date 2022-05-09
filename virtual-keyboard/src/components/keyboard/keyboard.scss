@@ -5,12 +5,12 @@
 
 .keyboard {
   width: 100%;
-  max-width: 850px;
+  max-width: 768px;
   
   display: grid;
   grid-gap: box.$margin-small-extra;
   grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(30, 1fr);
+  grid-template-columns: repeat(31, 1fr);
 }
 
 .keyboard__btn.btn{
@@ -18,23 +18,30 @@
   grid-column: span 2;
   @include helpers.flexCenter(column);
 
-  padding: box.$padding-small 0px;
+  padding: box.$padding-small-extra 0px;
 
   font-size: 17px;
   box-shadow: box.$box-shadow;
-  background: colors.$accent-standard;
+  background: colors.$main-light;
 }
+
+.keyboard__btn.functional{
+  background: colors.$main-standard;
+}
+
+.keyboard__btn.pressed{
+  box-shadow: none;
+  transform: translate(2px, 2px);
+  background: colors.$accent;
+}
+
 
 .keyboard__btn .alt-value {
   position: absolute;
-  top: 2px;
+  top: 1px;
   left: 3px;
 
-  font-size: fonts.$font-size-small;
-}
-
-.keyboard__btn.keyboard__btn_span-1 {
-  grid-column: span 1;
+  font-size: fonts.$font-size-small-extra;
 }
 
 .keyboard__btn.keyboard__btn_span-3 {

@@ -1,10 +1,12 @@
 @use '../../assets/sass/helpers';
 @use '../../assets/sass/colors';
+@use '../../assets/sass/fonts';
 
 .header {
   @include helpers.flexCenter(column);
+  color: colors.$main-standard;
 }
 
-.header__link {
-  color: colors.$accent-standard;
+.header__description {
+  font-size: fonts.$font-size-small;
 }
