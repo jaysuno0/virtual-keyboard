@@ -13,6 +13,81 @@ const state = {
   keyboard: false,
 };
 
+function createButton(btn) {
+  const button = createElement('div', ['btn', 'keyboard__btn']);
+  button.textContent = btn.char;
+
+  if (btn.width) button.classList.add(btn.width);
+  if (btn.alt) {
+    const alt = createElement('p', ['alt-value']);
+    alt.textContent = btn.alt;
+    button.append(alt);
+  }
+
+  if (btn.code.includes('Lang')
+      || btn.code.includes('Backspace')
+      || btn.code.includes('Enter')
+      || btn.code.includes('Shift')
+      || btn.code.includes('Alt')
+      || btn.code.includes('Control')
+      || btn.code.includes('Meta')
+      || btn.code.includes('Arrow')
+      || btn.code.includes('Arrow')
+      || btn.code.includes('Lock')
+      || btn.code.includes('Lock')
+      || btn.code.includes('Tab')
+      || btn.code.includes('Delete')
+  ) button.classList.add('functional');
+
+  buttons[btn.code] = {
+    code: btn.code,
+    char: btn.char,
+    alt: btn.alt,
+    btn: button,
+  };
+
+  keyboard.append(button);
+  state.keyboard = true;
+}
+
+function setupKeyboardListeners() {
+  Object.keys(buttons).forEach((key) => {
+    const btn = buttons[key];
+
+    btn.btn.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      pushKey(btn.code);
+    });
+    btn.btn.addEventListener('mouseup', () => {
+      unpushKey(btn.code);
+    });
+  });
+}
+
+function changeLanguage(lang) {
+  if (state.keyboard) [...document.querySelectorAll('.keyboard__btn')].forEach((btn) => btn.remove());
+  chars[lang].forEach((char) => createButton(char));
+  if (state.caps) buttons.CapsLock.btn.classList.add('pressed');
+  setupKeyboardListeners();
+  localStorage.setItem('lang', lang);
+  state.lang = lang;
+}
+
+function setState(code) {
+  if (code.includes('Shift')) state.shift = true;
+  else if (code.includes('Alt')) state.alt = true;
+  else if (code.includes('Control')) state.ctrl = true;
+  else if (code.includes('Caps')) {
+    if (state.caps) state.caps = false;
+    else state.caps = true;
+  }
+
+  if (state.alt && state.ctrl) {
+    if (state.lang === 'en') changeLanguage('ru');
+    else changeLanguage('en');
+  }
+}
+
 function pushKey(code) {
   const textarea = document.querySelector('.main__textarea');
   const currentCursor = textarea.selectionStart;
@@ -74,81 +149,6 @@ function pushKey(code) {
   textarea.textContent = leftPart + rightPart;
   textarea.focus();
   textarea.selectionStart = state.cursor;
-}
-
-function setupKeyboardListeners() {
-  Object.keys(buttons).forEach((key) => {
-    const btn = buttons[key];
-
-    btn.btn.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      pushKey(btn.code);
-    });
-    btn.btn.addEventListener('mouseup', () => {
-      unpushKey(btn.code);
-    });
-  });
-}
-
-function createButton(btn) {
-  const button = createElement('div', ['btn', 'keyboard__btn']);
-  button.textContent = btn.char;
-
-  if (btn.width) button.classList.add(btn.width);
-  if (btn.alt) {
-    const alt = createElement('p', ['alt-value']);
-    alt.textContent = btn.alt;
-    button.append(alt);
-  }
-
-  if (btn.code.includes('Lang')
-      || btn.code.includes('Backspace')
-      || btn.code.includes('Enter')
-      || btn.code.includes('Shift')
-      || btn.code.includes('Alt')
-      || btn.code.includes('Control')
-      || btn.code.includes('Meta')
-      || btn.code.includes('Arrow')
-      || btn.code.includes('Arrow')
-      || btn.code.includes('Lock')
-      || btn.code.includes('Lock')
-      || btn.code.includes('Tab')
-      || btn.code.includes('Delete')
-  ) button.classList.add('functional');
-
-  buttons[btn.code] = {
-    code: btn.code,
-    char: btn.char,
-    alt: btn.alt,
-    btn: button,
-  };
-
-  keyboard.append(button);
-  state.keyboard = true;
-}
-
-function changeLanguage(lang) {
-  if (state.keyboard) [...document.querySelectorAll('.keyboard__btn')].forEach((btn) => btn.remove());
-  chars[lang].forEach((char) => createButton(char));
-  if (state.caps) buttons.CapsLock.btn.classList.add('pressed');
-  setupKeyboardListeners();
-  localStorage.setItem('lang', lang);
-  state.lang = lang;
-}
-
-function setState(code) {
-  if (code.includes('Shift')) state.shift = true;
-  else if (code.includes('Alt')) state.alt = true;
-  else if (code.includes('Control')) state.ctrl = true;
-  else if (code.includes('Caps')) {
-    if (state.caps) state.caps = false;
-    else state.caps = true;
-  }
-
-  if (state.alt && state.ctrl) {
-    if (state.lang === 'en') changeLanguage('ru');
-    else changeLanguage('en');
-  }
 }
 
 function unsetState(code) {
