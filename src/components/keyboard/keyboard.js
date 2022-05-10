@@ -76,13 +76,6 @@ function pushKey(code) {
   textarea.selectionStart = state.cursor;
 }
 
-function unpushKey(code) {
-  if (!code.includes('Caps')) {
-    if (buttons[code].btn.classList.contains('functional')) setState(code);
-    buttons[code].btn.classList.remove('pressed');
-  }
-}
-
 function setupKeyboardListeners() {
   Object.keys(buttons).forEach((key) => {
     const btn = buttons[key];
@@ -144,16 +137,10 @@ function changeLanguage(lang) {
 }
 
 function setState(code) {
-  if (code.includes('Shift')) {
-    if (state.shift) state.shift = false;
-    else state.shift = true;
-  } else if (code.includes('Alt')) {
-    if (state.alt) state.alt = false;
-    else state.alt = true;
-  } else if (code.includes('Control')) {
-    if (state.ctrl) state.ctrl = false;
-    else state.ctrl = true;
-  } else if (code.includes('Caps')) {
+  if (code.includes('Shift')) state.shift = true;
+  else if (code.includes('Alt')) state.alt = true;
+  else if (code.includes('Control')) state.ctrl = true;
+  else if (code.includes('Caps')) {
     if (state.caps) state.caps = false;
     else state.caps = true;
   }
@@ -161,6 +148,19 @@ function setState(code) {
   if (state.alt && state.ctrl) {
     if (state.lang === 'en') changeLanguage('ru');
     else changeLanguage('en');
+  }
+}
+
+function unsetState(code) {
+  if (code.includes('Shift')) state.shift = false;
+  else if (code.includes('Alt')) state.alt = false;
+  else if (code.includes('Control')) state.ctrl = false;
+}
+
+function unpushKey(code) {
+  if (!code.includes('Caps')) {
+    if (buttons[code].btn.classList.contains('functional')) unsetState(code);
+    buttons[code].btn.classList.remove('pressed');
   }
 }
 
