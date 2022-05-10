@@ -1,8 +1,0 @@
-@use '../../assets/sass/helpers';
-@use '../../assets/sass/box-model' as box;
-
-.main {
-  width: 100%;
-  padding: box.$padding-large box.$padding-standard;
-  @include helpers.flexCenter(column);
-}
