@@ -22,13 +22,15 @@ function pushKey(code) {
 
   switch (code) {
     case 'Backspace':
-      if (state.cursor > 0) {
+    case 'Delete':
+      if (textarea.selectionStart !== textarea.selectionEnd) {
+        leftPart = textarea.textContent.substring(0, textarea.selectionStart);
+        rightPart = textarea
+          .textContent.substring(textarea.selectionEnd, textarea.textContent.length);
+      } else if (state.cursor > 0 && code === 'Backspace') {
         leftPart = leftPart.substring(0, leftPart.length - 1);
         state.cursor -= 1;
-      }
-      break;
-    case 'Delete':
-      rightPart = rightPart.substring(1, rightPart.length);
+      } else rightPart = rightPart.substring(1, rightPart.length);
       break;
     case 'Space':
       leftPart += ' ';
