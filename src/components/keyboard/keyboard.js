@@ -137,6 +137,7 @@ function createButton(btn) {
 function changeLanguage(lang) {
   if (state.keyboard) [...document.querySelectorAll('.keyboard__btn')].forEach((btn) => btn.remove());
   chars[lang].forEach((char) => createButton(char));
+  if (state.caps) buttons.CapsLock.btn.classList.add('pressed');
   setupKeyboardListeners();
   localStorage.setItem('lang', lang);
   state.lang = lang;
