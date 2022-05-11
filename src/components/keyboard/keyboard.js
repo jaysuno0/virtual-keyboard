@@ -117,6 +117,9 @@ function pushKey(code) {
       break;
     case 'ArrowDown':
     case 'ArrowUp':
+      setTimeout(() => {
+        state.cursor = textarea.selectionStart;
+      }, 0);
       break;
     case 'MetaLeft':
     case 'MetaRight':
