@@ -50,20 +50,6 @@ function createButton(btn) {
   state.keyboard = true;
 }
 
-function setupKeyboardListeners() {
-  Object.keys(buttons).forEach((key) => {
-    const btn = buttons[key];
-
-    btn.btn.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      pushKey(btn.code);
-    });
-    btn.btn.addEventListener('mouseup', () => {
-      unpushKey(btn.code);
-    });
-  });
-}
-
 function changeLanguage(lang) {
   if (state.keyboard) [...document.querySelectorAll('.keyboard__btn')].forEach((btn) => btn.remove());
   chars[lang].forEach((char) => createButton(char));
@@ -123,6 +109,15 @@ function pushKey(code) {
       if (state.lang === 'en') changeLanguage('ru');
       else changeLanguage('en');
       break;
+    case 'ArrowLeft':
+      state.cursor -= 1;
+      break;
+    case 'ArrowRight':
+      state.cursor += 1;
+      break;
+    case 'ArrowDown':
+    case 'ArrowUp':
+      break;
     case 'MetaLeft':
     case 'MetaRight':
     case 'AltRight':
@@ -135,7 +130,9 @@ function pushKey(code) {
       setState(code);
       break;
     default: {
-      if (state.caps || state.shift) {
+      if (state.caps && state.shift) {
+        leftPart += btn.char;
+      } else if (state.caps || state.shift) {
         if (btn.alt) leftPart += btn.alt;
         else leftPart += btn.char.toUpperCase();
       } else leftPart += btn.char;
@@ -164,6 +161,23 @@ function unpushKey(code) {
   }
 }
 
+function setupKeyboardListeners() {
+  Object.keys(buttons).forEach((key) => {
+    const btn = buttons[key];
+
+    btn.btn.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      pushKey(btn.code);
+    });
+    btn.btn.addEventListener('mouseleave', () => {
+      unpushKey(btn.code);
+    });
+    btn.btn.addEventListener('mouseup', () => {
+      unpushKey(btn.code);
+    });
+  });
+}
+
 setTimeout(() => {
   document.querySelector('.main__textarea').addEventListener('click', (event) => {
     state.cursor = event.target.selectionStart;
@@ -171,7 +185,13 @@ setTimeout(() => {
 }, 0);
 
 document.addEventListener('keydown', (event) => {
-  if (event.code !== 'F5' && event.code !== 'F12') event.preventDefault();
+  if (event.code !== 'F5'
+  && event.code !== 'F12'
+  && event.code !== 'ArrowUp'
+  && event.code !== 'ArrowDown'
+  && event.code !== 'ArrowLeft'
+  && event.code !== 'ArrowRight') event.preventDefault();
+
   if (buttons[event.code]) pushKey(event.code);
 });
 
