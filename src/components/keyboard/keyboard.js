@@ -110,10 +110,10 @@ function pushKey(code) {
       else changeLanguage('en');
       break;
     case 'ArrowLeft':
-      state.cursor -= 1;
+      if (state.cursor > 0) state.cursor -= 1;
       break;
     case 'ArrowRight':
-      state.cursor += 1;
+      if (state.cursor < textarea.textContent.length) state.cursor += 1;
       break;
     case 'ArrowDown':
     case 'ArrowUp':
